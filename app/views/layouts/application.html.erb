@@ -12,6 +12,7 @@
   <body>
     <header class="row">
       <div class="col-3">
+        <%= link_to root_path, class: 'logo' do %>
         <div class="circle">
           <br />
           BEARS
@@ -20,13 +21,14 @@
           <br />
           BATTLESTAR GALLACTICA
         </div>
+        <% end %>
       </div>
       <div class="col-4 slogan">
         For when you're feeling like you need a whole lot of paper
       </div>
       <div class="col-5 links">
-        <%= link_to 'Contribute', '#' %>
-        <%= link_to 'About', '#' %>
+        <%= link_to 'Contribute', new_quote_path %>
+        <%= link_to 'About', about_path %>
       </div>
     </header>
 
@@ -34,8 +36,29 @@
     
     <br class="clear" />
 
-    <%= yield %>
+    <div class="container">
+      <% if flash[:error].present? %>
+        <div class="col-10 offset-1 alert alert-danger">
+          <%= flash[:error].html_safe %>
+        </div>
+      <% end %>
+      <%= yield %>
   
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+             <%= link_to "This isn't enough, I need more", root_path, class: 'next-quote' %>
+          </div>
+          <div class="col-6 footer-blurb">
+            Proudly hacked in <a href="[YOUR_PORTFOLIO_URL]">[Port Neches, TX by Cole LeBoeuf]</a><br />
+            Want to build your own Splurty Web App - <a href="https://online.bootcampspot.com">Learn how to code here </a>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </body>
 </html>
